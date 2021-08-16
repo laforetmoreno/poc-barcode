@@ -15,18 +15,20 @@ export default function Home() {
   // const [data, setData] = React.useState([]);
   const [dataList, setDataList] = React.useState([]);
   const [show, setShow] = React.useState(false);
+  const [torch, setTorch] = React.useState(false);
 
   console.log(dataList, 'list');
 
   return (
     <div style={{ margin: '0 auto' }}>
       <button onClick={() => setShow(!show)}>Mostrar</button>
+      <button onClick={() => setTorch(!show)}>Ligar o flash</button>
       <>
         {show && (
           <BarcodeScannerComponent
             width={375}
             height={300}
-            torch={true}
+            torch={torch}
             onUpdate={(err, result) => {
               if (result) {
                 setData(result.text);
