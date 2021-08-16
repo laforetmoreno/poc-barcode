@@ -24,7 +24,7 @@ export default function Home() {
     <div style={{ margin: '0 auto' }}>
       <>
         <BarcodeScannerComponent
-          // width={300}
+          width={375}
           height={300}
           onUpdate={(err, result) => {
             if (result) {
