@@ -26,9 +26,11 @@ export default function Home() {
           <BarcodeScannerComponent
             width={375}
             height={300}
+            torch
+            // stopStream={result.text}
             onUpdate={(err, result) => {
               if (result) {
-                // setData(result.text);
+                setData(result.text);
                 setDataList([...dataList, result.text]);
                 setShow(false);
               }
