@@ -21,11 +21,11 @@ export default function Home() {
   const onError = err => setError(err);
 
   return (
-    <div>
+    <div style={{ margin: '0 auto' }}>
       <>
         <BarcodeScannerComponent
-          width={500}
-          height={500}
+          // width={300}
+          height={300}
           onUpdate={(err, result) => {
             if (result) {
               console.log(result, 'result');
