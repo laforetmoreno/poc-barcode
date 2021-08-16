@@ -12,28 +12,34 @@ const BarcodeScannerComponent = dynamic(
 // import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 
 export default function Home() {
-  const [data, setData] = React.useState('Not Found');
-  const [error, setError] = React.useState(null);
+  // const [data, setData] = React.useState([]);
+  const [dataList, setDataList] = React.useState([]);
+  const [show, setShow] = React.useState(false);
 
-  const handleScan = data => {
-    setData(data);
-  };
-  const onError = err => setError(err);
+  console.log(dataList, 'list');
 
   return (
     <div style={{ margin: '0 auto' }}>
+      <button onClick={() => setShow(!show)}>Mostrar</button>
       <>
-        <BarcodeScannerComponent
-          width={375}
-          height={300}
-          onUpdate={(err, result) => {
-            if (result) {
-              console.log(result, 'result');
-              setData(result.text);
-            } else setData('Not Found');
-          }}
-        />
-        <p>{data}</p>
+        {show && (
+          <BarcodeScannerComponent
+            width={375}
+            height={300}
+            onUpdate={(err, result) => {
+              if (result) {
+                // setData(result.text);
+                setDataList([...dataList, result.text]);
+                setShow(false);
+              }
+            }}
+          />
+        )}
+        <ul>
+          {dataList.map(dataItem => (
+            <li>{dataItem}</li>
+          ))}
+        </ul>
       </>
     </div>
   );
